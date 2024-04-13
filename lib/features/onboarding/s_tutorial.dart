@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
+import 'package:flutter_tiktok_clone/features/main_navigation/s_main_navigation.dart';
 
 enum Direction { right, left }
 
@@ -41,6 +42,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
         _showingPage = Page.first;
       });
     }
+  }
+
+  void _onEnterAppTap() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MainNavigationScreen(),
+      ),
+      (route) => false, // remove all previous routes
+    );
   }
 
   @override
@@ -113,6 +124,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 duration: const Duration(milliseconds: 300),
                 child: CupertinoButton(
                   color: Theme.of(context).primaryColor,
+                  onPressed: _onEnterAppTap,
                   child: const Text(
                     "Start the fun",
                     style: TextStyle(
@@ -120,7 +132,6 @@ class _TutorialScreenState extends State<TutorialScreen> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  onPressed: () {},
                 ),
               ),
             ),
