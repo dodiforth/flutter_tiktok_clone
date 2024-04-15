@@ -3,59 +3,70 @@ import 'package:flutter_tiktok_clone/constants/sizes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostVideoButton extends StatelessWidget {
-  const PostVideoButton({super.key});
+  final bool onTapDown;
+  bool inverted;
+
+  PostVideoButton({super.key, required this.onTapDown, required this.inverted});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Positioned(
-          right: 21,
-          child: Container(
-            width: 25,
-            height: 30,
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 600),
+      opacity: 1,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(
+            right: 21,
+            child: Container(
+              width: 25,
+              height: 30,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size8,
+              ),
+              decoration: BoxDecoration(
+                color: onTapDown
+                    ? Theme.of(context).primaryColor
+                    : const Color.fromRGBO(85, 183, 198, 1),
+                borderRadius: BorderRadius.circular(Sizes.size6),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 21,
+            child: Container(
+              width: 25,
+              height: 30,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size8,
+              ),
+              decoration: BoxDecoration(
+                color: onTapDown
+                    ? const Color.fromRGBO(85, 183, 198, 1)
+                    : Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(Sizes.size6),
+              ),
+            ),
+          ),
+          Container(
             padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.size8,
+              horizontal: Sizes.size12,
             ),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(85, 183, 198, 1),
+              color: !inverted ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(Sizes.size6),
             ),
-          ),
-        ),
-        Positioned(
-          left: 21,
-          child: Container(
-            width: 25,
             height: 30,
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.size8,
+            child: Center(
+              child: FaIcon(
+                FontAwesomeIcons.plus,
+                color: !inverted ? Colors.black : Colors.white,
+                size: Sizes.size20,
+              ),
             ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(Sizes.size6),
-            ),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.size12,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Sizes.size6),
-          ),
-          height: 30,
-          child: const Center(
-            child: FaIcon(
-              FontAwesomeIcons.plus,
-              color: Colors.black,
-              size: Sizes.size20,
-            ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

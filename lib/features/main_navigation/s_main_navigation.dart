@@ -15,6 +15,7 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
+  bool _onTapDown = false;
 
   void _onTap(int index) {
     setState(() {
@@ -83,8 +84,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               ),
               Gaps.h20,
               GestureDetector(
-                onTap: _onPostVideoButtonTap,
-                child: const PostVideoButton(),
+                onTapUp: (details) => _onPostVideoButtonTap(),
+                onTapDown: (details) {
+                  setState(() {
+                    _onTapDown = !_onTapDown;
+                  });
+                },
+                child: PostVideoButton(
+                  onTapDown: _onTapDown,
+                  inverted: _selectedIndex != 0,
+                ),
               ),
               Gaps.h20,
               NavTab(
