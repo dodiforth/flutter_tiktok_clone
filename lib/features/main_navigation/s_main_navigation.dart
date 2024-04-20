@@ -92,7 +92,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 },
                 child: PostVideoButton(
                   onTapDown: _onTapDown,
-                  inverted: _selectedIndex != 0,
                 ),
               ),
               Gaps.h20,

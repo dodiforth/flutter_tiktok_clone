@@ -4,9 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PostVideoButton extends StatelessWidget {
   final bool onTapDown;
-  bool inverted;
+  //bool inverted;
 
-  PostVideoButton({super.key, required this.onTapDown, required this.inverted});
+  const PostVideoButton({super.key, required this.onTapDown});
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +53,14 @@ class PostVideoButton extends StatelessWidget {
               horizontal: Sizes.size12,
             ),
             decoration: BoxDecoration(
-              color: !inverted ? Colors.white : Colors.black,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(Sizes.size6),
             ),
             height: 30,
-            child: Center(
+            child: const Center(
               child: FaIcon(
                 FontAwesomeIcons.plus,
-                color: !inverted ? Colors.black : Colors.white,
+                color: Colors.black,
                 size: Sizes.size20,
               ),
             ),
